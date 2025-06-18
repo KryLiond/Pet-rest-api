@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { getPet } from "./pet.model";
+import { getPet } from "../models/pet.model";
 
 export const validatePet = (
 	_req: Request,

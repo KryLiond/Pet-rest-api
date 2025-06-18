@@ -5,10 +5,19 @@
 # Структура проекта
 
 ```
-src/
-├── index.ts # Главный файл
-├── pet.model.ts # Модель питомца и логика его состояния
-└── pet.routes.ts # Обработчики API-роутов
+- src/
+	- controllers/
+		- pet.controller.ts
+	- routes/
+		- pet.routes.ts
+	- services/
+		- pet.service.ts
+	- models/
+		- pet.model.ts
+	- middlewares/
+		- validatePet.middleware.ts
+	- index.ts
+
 ```
 
 # Развертывание в Docker

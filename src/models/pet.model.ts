@@ -11,7 +11,7 @@ export interface Pet {
 
 let currentPet: null | Pet = null;
 
-export const createPet = (name: string): Pet => {
+export const createNewPet = (name: string): Pet => {
 	return {
 		name,
 		age: 0,

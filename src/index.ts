@@ -1,6 +1,6 @@
 import express from "express";
-import petRouter from "./pet.routes";
-import { updatePetState } from "./pet.model";
+import petRouter from "./routes/pet.routes";
+import { updatePetState } from "./models/pet.model";
 import dotenv from "dotenv";
 
 dotenv.config();
