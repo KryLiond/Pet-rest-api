@@ -3,15 +3,18 @@
 Тестовое задание: реализация виртуального питомца через REST API на Express.js + TypeScript.
 
 # Структура проекта
+
 ```
 src/
 ├── index.ts # Главный файл
 ├── pet.model.ts # Модель питомца и логика его состояния
 └── pet.routes.ts # Обработчики API-роутов
 ```
+
 # Развертывание в Docker
 
 Соберите Docker-образ: `docker build -t pet-api .`
+
 Запустите контейнер: `docker run -p 4200:4200 pet-api`
 
 # API Endpoints

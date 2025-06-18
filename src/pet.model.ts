@@ -23,26 +23,23 @@ export const createPet = (name: string): Pet => {
 };
 
 export const updatePetState = (): void => {
-	// * Никак не сужался тип у currentPet, поэтому создал локальную константу
-	const pet = currentPet as Pet | null;
-	if (pet === null) return;
-	if (pet.status === "dead") return;
+	if (!currentPet || currentPet.status === "dead") return;
 
-	pet.age += 1;
-	pet.hunger += 3;
+	currentPet.age += 1;
+	currentPet.hunger += 3;
 
-	if (pet.hunger > 70) {
-		pet.health -= 5;
+	if (currentPet.hunger > 70) {
+		currentPet.health -= 5;
 	} else {
-		pet.health -= 2;
+		currentPet.health -= 2;
 	}
 
-	pet.mood = calculateMood(pet.health, pet.hunger);
+	currentPet.mood = calculateMood(currentPet.health, currentPet.hunger);
 
-	if (pet.health <= 0 || pet.hunger >= 100) {
-		pet.status = "dead";
+	if (currentPet.health <= 0 || currentPet.hunger >= 100) {
+		currentPet.status = "dead";
 	} else {
-		pet.status = pet.health > 30 ? "alive" : "sick";
+		currentPet.status = currentPet.health > 30 ? "alive" : "sick";
 	}
 };
 
