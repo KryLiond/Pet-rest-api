@@ -1,6 +1,12 @@
 import express, { Request, Response } from "express";
 
-import { getPet, setPet, createPet, calculateMood } from "./pet.model";
+import {
+	getPet,
+	setPet,
+	createPet,
+	calculateMood,
+	updatePet,
+} from "./pet.model";
 
 const petRouter = express.Router();
 
@@ -27,9 +33,13 @@ petRouter.post("/pet/feed", (_req: Request, res: Response) => {
 	if (pet.status === "dead")
 		return res.status(410).json({ error: "Pet is dead" });
 
-	pet.hunger = Math.max(0, pet.hunger - 30);
-	pet.mood = Math.min(100, pet.mood + 10);
-	res.json(pet);
+	const updatedPet = updatePet({
+		hunger: Math.max(0, pet.hunger - 30),
+		mood: Math.min(100, pet.mood + 10),
+	});
+
+	setPet(updatedPet);
+	res.json(updatedPet);
 });
 
 petRouter.post("/pet/heal", (_req: Request, res: Response) => {
@@ -38,10 +48,17 @@ petRouter.post("/pet/heal", (_req: Request, res: Response) => {
 	if (pet.status === "dead")
 		return res.status(410).json({ error: "Pet is dead" });
 
-	pet.health = Math.min(100, pet.health + 20);
-	pet.hunger = Math.max(0, pet.hunger - 10);
-	pet.mood = calculateMood(pet.health, pet.hunger);
-	res.json(pet);
+	const newHealth = Math.min(100, pet.health + 20);
+	const newHunger = Math.max(0, pet.hunger - 10);
+
+	const updatedPet = updatePet({
+		health: newHealth,
+		hunger: newHunger,
+		mood: calculateMood(newHealth, newHunger),
+	});
+
+	setPet(updatedPet);
+	res.json(updatedPet);
 });
 
 petRouter.post("/pet/play", (_req: Request, res: Response) => {
@@ -50,9 +67,13 @@ petRouter.post("/pet/play", (_req: Request, res: Response) => {
 	if (pet.status === "dead")
 		return res.status(410).json({ error: "Pet is dead" });
 
-	pet.mood = Math.min(100, pet.mood + 15);
-	pet.hunger = Math.min(100, pet.hunger + 5);
-	res.json(pet);
+	const updatedPet = updatePet({
+		mood: Math.min(100, pet.mood + 15),
+		hunger: Math.min(100, pet.hunger + 5),
+	});
+
+	setPet(updatedPet);
+	res.json(updatedPet);
 });
 
 export default petRouter;

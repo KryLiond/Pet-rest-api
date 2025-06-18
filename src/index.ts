@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use(petRouter);
 
 setInterval(() => {
-	updatePetState();
+	const _updatedPet = updatePetState();
 }, 60 * 1000);
 
 const PORT = process.env.PORT || 4200;
