@@ -5,19 +5,18 @@
 # Структура проекта
 
 ```
-- src/
-	- controllers/
-		- pet.controller.ts
-	- routes/
-		- pet.routes.ts
-	- services/
-		- pet.service.ts
-	- models/
-		- pet.model.ts
-	- middlewares/
-		- validatePet.middleware.ts
-	- index.ts
-
+└── 📁src
+    └── 📁controllers
+        └── pet.controller.ts
+    └── 📁middlewares
+        └── validatePet.middleware.ts
+    └── 📁models
+        └── pet.model.ts
+    └── 📁routes
+        └── pet.routes.ts
+    └── 📁services
+        └── pet.service.ts
+    └── index.ts
 ```
 
 # Развертывание в Docker
